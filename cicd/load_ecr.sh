@@ -18,11 +18,14 @@ docker pull public.ecr.aws/awsandy/docker-2048
 docker tag public.ecr.aws/awsandy/docker-2048 $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/sample-app
 docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/sample-app
 
-# karpenter stuff 
+# karpenter stuff
+
+# Amazon ECR 퍼블릭 레지스트리로부터 pull
 docker pull public.ecr.aws/karpenter/controller:v${1}
 docker pull public.ecr.aws/karpenter/webhook:v${1}
 docker tag public.ecr.aws/karpenter/webhook:v${1} $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/karpenter/webhook:v${1}
 docker tag public.ecr.aws/karpenter/controller:v${1} $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/karpenter/controller:v${1}
+# Amazon ECR 프라이빗 레지스트리에 push
 docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/karpenter/webhook:v${1}
 docker push $ACCOUNT_ID.dkr.ecr.$AWS_REGION.amazonaws.com/karpenter/controller:v${1}
 docker pull public.ecr.aws/eks-distro/kubernetes/pause:3.5
